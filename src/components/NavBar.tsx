@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 function NavBar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -37,11 +38,16 @@ function NavBar() {
               component="div"
               sx={{
                 display: { xs: "none", md: "flex" },
+                gap: "2rem",
                 justifyContent: "left",
               }}
             >
-              <Button color="inherit">Home</Button>
-              <Button color="inherit">Another page</Button>
+              <Button color="inherit" component={Link} to="/dashboard">
+                Home
+              </Button>
+              <Button color="inherit" component={Link} to="/second">
+                Second
+              </Button>
             </Box>
             <IconButton
               onClick={handleMenuOpen}
@@ -57,7 +63,7 @@ function NavBar() {
               transformOrigin={{ vertical: "top", horizontal: "right" }}
             >
               <MenuItem onClick={handleMenuClose}>Home</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Another page</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Second</MenuItem>
             </Menu>
           </Box>
         </Toolbar>
