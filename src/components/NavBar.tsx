@@ -11,7 +11,14 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 function NavBar() {
-    
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  const isMenuOpen = Boolean(anchorEl);
   return (
     <Box component="div">
       <AppBar sx={{ backgroundColor: "var(--primary-color)" }}>
@@ -36,9 +43,22 @@ function NavBar() {
               <Button color="inherit">Home</Button>
               <Button color="inherit">Another page</Button>
             </Box>
-            <IconButton sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              onClick={handleMenuOpen}
+              sx={{ display: { xs: "flex", md: "none" } }}
+            >
               <MenuIcon />
             </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={isMenuOpen}
+              onClose={handleMenuClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+            >
+              <MenuItem onClick={handleMenuClose}>Home</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Another page</MenuItem>
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>
