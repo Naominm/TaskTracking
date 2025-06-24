@@ -11,6 +11,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 function NavBar() {
+    
   return (
     <Box component="div">
       <AppBar sx={{ backgroundColor: "var(--primary-color)" }}>
