@@ -22,7 +22,7 @@ function NavBar() {
   const isMenuOpen = Boolean(anchorEl);
   return (
     <Box component="div">
-      <AppBar sx={{ backgroundColor: "var(--primary-color)" }}>
+      <AppBar sx={{ backgroundColor: "var(--secondary-color)" }}>
         <Toolbar>
           <Box
             component="div"
