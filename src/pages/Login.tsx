@@ -1,11 +1,7 @@
- import { Box } from "@mui/material"
+import { Box } from "@mui/material";
 
- function LoginPage (){
-    return(
-<Box component="div">
-Hello 
-</Box>
-    )
- }
+function LoginPage() {
+  return <Box component="div">Hello this is thee login page</Box>;
+}
 
- export default LoginPage;
+export default LoginPage;
