@@ -6,7 +6,8 @@ import {
   Button,
   Alert,
 } from "@mui/material";
-import { isValidElement, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginImage from "../assets/6378759.jpg";
 
 function LoginPage() {
@@ -47,6 +48,7 @@ function ImageSection() {
 }
 
 function FormSection() {
+  const navigate = useNavigate();
   const [validEmail, setValidEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState("");
@@ -66,6 +68,7 @@ function FormSection() {
     }
     setFormSubmitted(true);
     setFormError("");
+    navigate("/dashboard");
   }
 
   return (
