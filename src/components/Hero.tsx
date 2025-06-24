@@ -58,6 +58,7 @@ function Hero() {
           label="Task Description"
           variant="filled"
           value={description}
+          multiline
           onChange={(e) => setDescription(e.target.value)}
           sx={{ bgcolor: "#fff", borderRadius: "0.5rem", overflow: "hidden" }}
           fullWidth

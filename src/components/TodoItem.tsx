@@ -1,5 +1,7 @@
 import useTaskStore from "../store/taskStore";
-import { Box, Button, Typography, TextField } from "@mui/material";
+import { Box, Button, Typography, TextField, IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+
 import { useState } from "react";
 function TodoList() {
   const tasks = useTaskStore((state) => state.tasks);
@@ -31,7 +33,8 @@ function TodoList() {
           key={index}
           component="div"
           sx={{
-            width: "20%",
+            width: "30%",
+            height: "auto",
             mt: 5,
             backgroundColor: "#999",
             display: "flex",
@@ -49,12 +52,14 @@ function TodoList() {
                 value={editedTitle}
                 onChange={(e) => setEditedTitle(e.target.value)}
                 size="small"
+                sx={{ mt: 5 }}
               />
               <TextField
                 label="Edit Description"
                 value={editedDescription}
                 onChange={(e) => setEditedDescription(e.target.value)}
                 size="small"
+                multiline
               />
               <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Button
@@ -78,6 +83,9 @@ function TodoList() {
               <Typography variant="h6">{task.title}</Typography>
               <Typography variant="body2">{task.description}</Typography>
               <Box sx={{ display: "flex", gap: "1rem" }}>
+                <IconButton size="small" onClick={() => handleEdit(task)}>
+                  <EditIcon fontSize="small" />
+                </IconButton>
                 <Button
                   variant="contained"
                   sx={{
