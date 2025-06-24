@@ -50,6 +50,7 @@ function FormSection() {
   const [validEmail, setValidEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const isValidEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -60,8 +61,10 @@ function FormSection() {
     e.preventDefault();
     if (!isFormValid) {
       setFormError("please Enter correct details");
+      setFormSubmitted(false);
       return;
     }
+    setFormSubmitted(true);
     setFormError("");
   }
 
@@ -92,7 +95,7 @@ function FormSection() {
       >
         <Box component="div">
           {formError && <Alert severity="error">{formError}</Alert>}
-          {!formError && (
+          {formSubmitted && !formError && (
             <Alert severity="success">Authenticated successfully</Alert>
           )}
         </Box>
