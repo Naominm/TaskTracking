@@ -1,12 +1,14 @@
+import useTaskStore from "../store/taskStore";
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import HeroBg from "../assets/login.jpg";
 function Hero() {
+  const addTask = useTaskStore((state) => state.addTask);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("Task Submitted:", { title, description });
+    addTask({ title, description });
   }
   return (
     <Box
