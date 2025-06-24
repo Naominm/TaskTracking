@@ -54,7 +54,7 @@ function FormSection() {
   const isValidEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const isFormValid = isValidEmail(validEmail);
+  const isFormValid = isValidEmail(validEmail) && password.length > 8;
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -62,6 +62,7 @@ function FormSection() {
       setFormError("please Enter correct details");
       return;
     }
+    setFormError("");
   }
 
   return (
@@ -91,6 +92,9 @@ function FormSection() {
       >
         <Box component="div">
           {formError && <Alert severity="error">{formError}</Alert>}
+          {!formError && (
+            <Alert severity="success">Authenticated successfully</Alert>
+          )}
         </Box>
         <TextField
           required
