@@ -3,6 +3,7 @@
   --secondary-color: #215558;
   --primary-color: #0ba4af;
   --text-color: #557d72;
+  --card-bg: #d3eccd;
 }
 * {
   box-sizing: border-box;

@@ -1,11 +1,12 @@
 import useTaskStore from "../store/taskStore";
 import { Box, Button, Typography, TextField, IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import { CiEdit, CiStar } from "react-icons/ci";
 
 import { useState } from "react";
 function TodoList() {
   const tasks = useTaskStore((state) => state.tasks);
   const updateTask = useTaskStore((state) => state.updateTask);
+  const deleteTask = useTaskStore((state) => state.deleteTask);
   const [editTaskId, setEditTaskId] = useState<number | null>(null);
   const [editedTitle, setEditedTitle] = useState("");
   const [editedDescription, setEditedDescription] = useState("");
@@ -36,7 +37,7 @@ function TodoList() {
             width: "30%",
             height: "auto",
             mt: 5,
-            backgroundColor: "#999",
+            backgroundColor: "var(--card-bg)",
             display: "flex",
             flexDirection: "column",
             gap: "2rem",
@@ -80,12 +81,31 @@ function TodoList() {
             </>
           ) : (
             <>
-              <Typography variant="h6">{task.title}</Typography>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  pr: 1,
+                  pt: 1,
+                }}
+              >
+                <IconButton
+                  sx={{
+                    padding: 0,
+                    margin: 0,
+                    display: "flex",
+                    alignItems: "right",
+                  }}
+                  size="small"
+                  onClick={() => handleEdit(task)}
+                >
+                  <CiEdit size={18} />
+                </IconButton>
+              </Box>
+              <Typography variant="body2">{task.title}</Typography>
               <Typography variant="body2">{task.description}</Typography>
               <Box sx={{ display: "flex", gap: "1rem" }}>
-                <IconButton size="small" onClick={() => handleEdit(task)}>
-                  <EditIcon fontSize="small" />
-                </IconButton>
                 <Button
                   variant="contained"
                   sx={{
@@ -98,6 +118,7 @@ function TodoList() {
                 <Button
                   variant="contained"
                   sx={{ backgroundColor: "crimson", fontSize: "0.5rem" }}
+                  onClick={() => deleteTask(task.id)}
                 >
                   Delete
                 </Button>

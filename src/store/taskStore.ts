@@ -10,6 +10,7 @@ type TaskStore = {
   tasks: Task[];
   addTask: (task: Task) => void;
   updateTask: (id: number, updatedTask: Partial<Task>) => void;
+  deleteTask: (id: number) => void;
 };
 
 const useTaskStore = create<TaskStore>((set) => ({
@@ -23,6 +24,10 @@ const useTaskStore = create<TaskStore>((set) => ({
       tasks: state.tasks.map((task) =>
         task.id === id ? { ...task, ...updatedTask } : task,
       ),
+    })),
+  deleteTask: (id) =>
+    set((state) => ({
+      tasks: state.tasks.filter((task) => task.id !== id),
     })),
 }));
 
