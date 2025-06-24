@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 type Task = {
-  id: Number;
+  id: number;
   title: string;
   description: string;
 };

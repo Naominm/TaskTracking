@@ -8,7 +8,16 @@ function Hero() {
   const [description, setDescription] = useState("");
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    addTask({ title, description });
+    if (!title || !description) return;
+
+    addTask({
+      id: Date.now(),
+      title,
+      description,
+    });
+
+    setTitle("");
+    setDescription("");
   }
   return (
     <Box
