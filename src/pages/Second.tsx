@@ -1,20 +1,17 @@
 import { Paper, Typography, Box } from "@mui/material";
-import Grid from "@mui/material/GridLegacy";
+import Grid from "@mui/material/Grid";
 
 function SecondPage() {
   return (
     <Box sx={{ flexGrow: 1, mt: 10, px: 2 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4}>
-          {" "}
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <CardSection />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          {" "}
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <CardSection />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          {" "}
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <CardSection />
         </Grid>
       </Grid>
