@@ -6,9 +6,10 @@ function TasksDisplay() {
     <Box
       component="div"
       sx={{
-        width: "100%",
+        width: "90%",
         display: "flex",
         flexWrap: "wrap",
+        justifyContent: "center",
         gap: "2rem",
         mx: 2,
       }}

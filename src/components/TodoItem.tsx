@@ -47,7 +47,7 @@ function TodoList() {
           key={index}
           component="div"
           sx={{
-            width: "20%",
+            width: { xs: "80%", md: "20%" },
             height: "auto",
             mt: 5,
             backgroundColor: "var(--card-bg)",
