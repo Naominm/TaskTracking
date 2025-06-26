@@ -14,6 +14,7 @@ function Hero() {
       id: Date.now(),
       title,
       description,
+      completed: false,
     });
 
     setTitle("");

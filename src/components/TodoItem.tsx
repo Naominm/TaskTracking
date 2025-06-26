@@ -1,6 +1,6 @@
 import useTaskStore from "../store/taskStore";
 import { Box, Button, Typography, TextField, IconButton } from "@mui/material";
-import { CiEdit, CiStar } from "react-icons/ci";
+import { CiEdit } from "react-icons/ci";
 
 import { useState } from "react";
 function TodoList() {
@@ -15,6 +15,7 @@ function TodoList() {
     id: number;
     title: string;
     description: string;
+    completed: boolean;
   }) => {
     setEditTaskId(task.id);
     setEditedTitle(task.title);
@@ -27,6 +28,18 @@ function TodoList() {
     });
     setEditTaskId(null);
   };
+  const markAsCompleted = useTaskStore(function (state) {
+    return state.markComplete;
+  });
+  const markAsIncomplete = useTaskStore(function (state) {
+    return state.markIncomplete;
+  });
+  function handleMarkIncomplete(id: number) {
+    markAsIncomplete(id);
+  }
+  function handleMarkComplete(id: number) {
+    markAsCompleted(id);
+  }
   return (
     <>
       {tasks.map((task, index) => (
@@ -34,13 +47,13 @@ function TodoList() {
           key={index}
           component="div"
           sx={{
-            width: "30%",
+            width: "20%",
             height: "auto",
             mt: 5,
             backgroundColor: "var(--card-bg)",
             display: "flex",
             flexDirection: "column",
-            gap: "2rem",
+            gap: "1rem",
             alignItems: "center",
             borderRadius: "1rem",
             pb: 2,
@@ -103,8 +116,22 @@ function TodoList() {
                   <CiEdit size={18} />
                 </IconButton>
               </Box>
-              <Typography variant="body2">{task.title}</Typography>
-              <Typography variant="body2">{task.description}</Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  textDecoration: task.completed ? "line-through" : "none",
+                }}
+              >
+                {task.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  textDecoration: task.completed ? "line-through" : "none",
+                }}
+              >
+                {task.description}
+              </Typography>
               <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Button
                   variant="contained"
@@ -112,8 +139,13 @@ function TodoList() {
                     backgroundColor: "var(--secondary-color)",
                     fontSize: "0.5rem",
                   }}
+                  onClick={() =>
+                    task.completed
+                      ? handleMarkIncomplete(task.id)
+                      : handleMarkComplete(task.id)
+                  }
                 >
-                  mark As Complete
+                  {task.completed ? "mark As Incomplete" : "mark As Completed"}
                 </Button>
                 <Button
                   variant="contained"
